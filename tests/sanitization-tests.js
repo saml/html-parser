@@ -166,4 +166,12 @@ describe('Sanitization', function() {
 		});
 		sanitized.should.equal('<foo></foo><foo id="def"></foo>');
 	});
+
+    it('should remove tag only, not entire element', function() {
+        var html = '<p>h<font size="3">e</font>llo</p>';
+        var sanitized = helpers.parser.sanitize(html, {
+            tags: ['font']
+        });
+        sanitized.should.equal('<p>hello</p>');
+    });
 });
